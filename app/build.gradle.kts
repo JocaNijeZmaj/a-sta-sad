@@ -1,7 +1,16 @@
+import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesStrategy
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.services)
 }
+
+googleServices {
+    missingGoogleServicesStrategy = MissingGoogleServicesStrategy.IGNORE
+}
+
+val useFirebaseDevCloud = providers.gradleProperty("astaFirebaseDevCloud").orNull == "true"
 
 android {
     namespace = "rs.astasad.app"
@@ -20,6 +29,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("boolean", "FIREBASE_DEV_CLOUD", useFirebaseDevCloud.toString())
+        }
         release {
             optimization {
                 enable = true
@@ -33,6 +45,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -53,4 +66,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(platform(libs.firebase.bom))
+    debugImplementation(libs.firebase.auth)
+    debugImplementation(libs.firebase.firestore)
 }

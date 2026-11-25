@@ -70,7 +70,7 @@ The team should confirm the Firebase setup and exact dependency versions in the 
 - A compatible **JDK**, as required by the project's Gradle configuration (normally provided by Android Studio).
 - An Android emulator or physical Android device with USB debugging enabled.
 - Git.
-- Access to the shared Firebase development project **once Firebase integration is enabled**.
+- For Firebase development, Node.js/npm, a compatible JDK for the Emulator Suite, and access to the shared Firebase Android client configuration.
 
 ### 1. Clone the repository
 
@@ -87,18 +87,29 @@ Replace the placeholders with the actual repository URL and folder name.
 2. Select **Open** and choose the repository folder.
 3. Allow **Gradle Sync** to complete and install any requested Android SDK components.
 
-### 3. Configure Firebase (when required)
+### 3. Configure Firebase for local development
 
-Firebase-backed screens require the team's development Firebase project:
+1. Use the existing team project `a-sta-sad-dev` and its registered Android application `rs.astasad.app`. The maintainer manages console access, Email/Password Authentication, and the Cloud Firestore database.
+2. Obtain the Android client config from the project maintainer and save it as `app/src/debug/google-services.json`. Git ignores this file. Keep it in the debug source set and keep service account keys and credentials out of the repository. No service account key is needed.
+3. Start the local Auth and Firestore emulators from the repository root. This command runs Firebase CLI through npm without installing it globally.
 
-1. Obtain the Android Firebase configuration file (`google-services.json`) from the project maintainer.
-2. Place it at `app/google-services.json`, if that is the location configured by the project.
-3. Ensure the corresponding Firebase Authentication methods, Firestore database, security rules, and required indexes have been configured.
-4. Use test accounts for each role. Do **not** create admin/professor privileges through public registration.
+```bash
+npm exec --yes --package=firebase-tools -- firebase emulators:start --only auth,firestore --project a-sta-sad-dev
+```
 
-Do not commit private credentials, service account keys, or real user data. Firebase client configuration is not a substitute for security rules.
+   The Firestore emulator uses Java. If `java` is unavailable in your shell, set `JAVA_HOME` to your installed JDK and add its `bin` directory to `PATH` before running the command. See the [Emulator Suite setup guide](https://firebase.google.com/docs/emulator-suite/install_and_configure) for CLI and JDK prerequisites.
 
-> Before Firebase integration is complete, screens can be developed and previewed with **fake/sample repositories**. Features requiring live authentication or data will not work until the backend is configured.
+4. Run the `app` debug configuration on an Android emulator. It connects through `10.0.2.2` to Auth on port `9099` and Firestore on port `8080`. On the host, the Emulator Suite UI is at `http://127.0.0.1:4000`. The local Firestore rules deny all client reads and writes until access rules are implemented.
+
+   On Android 17 (API 37) or later, grant local-network access to the installed debug app before testing Firebase calls. With the Android emulator selected, run:
+
+   ```bash
+   adb shell pm grant rs.astasad.app android.permission.ACCESS_LOCAL_NETWORK
+   ```
+
+   This development permission is only declared in debug. The placeholder demo works without granting it. See [Android's local-network permission guide](https://developer.android.com/privacy-and-security/local-network-permission).
+
+The Login → Activities demo works without `google-services.json`. With the file present, the debug app uses the local emulators by default. To target the shared dev cloud explicitly, build debug with `./gradlew :app:assembleDebug -PastaFirebaseDevCloud=true` and install that APK. This flag only changes debug SDK routing. The demo screens still use placeholder content.
 
 ### 4. Build and run
 
