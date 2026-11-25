@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">A šta sad?</string>
+    <string name="login_placeholder">Prijava će biti dostupna kasnije. Za sada možeš da istražiš aplikaciju u demo režimu.</string>
+    <string name="login_continue_demo">Otvori demo</string>
+    <string name="nav_activities">Aktivnosti</string>
+    <string name="nav_forum">Pitanja</string>
+    <string name="nav_profile">Profil</string>
+    <string name="activities_title">Promotivne aktivnosti</string>
+    <string name="activities_placeholder">Ovde ćeš moći da pronađeš sajmove, radionice i obilaske škola.</string>
+    <string name="forum_title">Pitanja i odgovori</string>
+    <string name="forum_placeholder">Ovde ćeš moći da čitaš pitanja o školama i studiranju.</string>
+    <string name="profile_title">Moj profil</string>
+    <string name="profile_placeholder">Ovde ćeš moći da vidiš i urediš podatke svog naloga.</string>
+</resources>
