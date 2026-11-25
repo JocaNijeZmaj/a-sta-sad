@@ -1,0 +1,5 @@
+<resources>
+    <string name="demo_preview_read_only">Demo podaci · samo za pregled</string>
+    <string name="demo_preview_activity_details">%1$s · %2$s · %3$s</string>
+    <string name="demo_preview_question_details">%1$s · Odgovori: %2$d</string>
+</resources>

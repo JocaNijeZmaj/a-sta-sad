@@ -111,6 +111,12 @@ npm exec --yes --package=firebase-tools -- firebase emulators:start --only auth,
 
 The Login → Activities demo works without `google-services.json`. With the file present, the debug app uses the local emulators by default. To target the shared dev cloud explicitly, build debug with `./gradlew :app:assembleDebug -PastaFirebaseDevCloud=true` and install that APK. This flag only changes debug SDK routing. The demo screens still use placeholder content.
 
+#### Offline demo data for UI development
+
+Select the **debug** build variant and open `app/src/debug/java/rs/astasad/app/ui/preview/DemoContentPreviews.kt` in Android Studio. The **Demo activities** and **Demo forum** previews show labeled, fictional content without the Firebase config or emulators.
+
+In debug-only code, use `DemoRepositories.forRole(UserRole.HIGHSCHOOL_STUDENT)` from `rs.astasad.app.data.demo` and pass the repository properties you need to your feature. Any of the four roles can select a fixture profile. This does not sign in a user, switch the app's data source, or grant any real permissions. The repositories support sample reads only. Writes and privileged user/roster reads throw `UnsupportedOperationException`. Text search filters the loaded fixture results. Release builds exclude the fixtures, fakes, and sample previews.
+
 ### 4. Build and run
 
 Select the **app** run configuration and an emulator/device, then click **Run** in Android Studio.
