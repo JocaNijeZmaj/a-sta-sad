@@ -14,16 +14,7 @@
 
 - Glavni IDE: **Android Studio** za Gradle sync, emulator, Logcat, `@Preview` i debugging.
 - Agent: **Codex** u AI Chat (kada JetBrains AI Assistant / IDE verzija podržava integraciju) ili **Codex CLI** iz integrisanog Terminal-a.
-- Alternativa: Codex u VS Code-u može da menja Kotlin fajlove istog repoa, ali je Android Studio praktičniji za vizuelni preview i build.
 - Po pravilu izaberi **Workspace access** a ne Full access, proveri diff pre commita. Ne daj Codexu lične tajne i servisne ključeve.
-
-Primer (ako IDE integracija ne radi, macOS, Node/npm):
-
-```bash
-npm install -g @openai/codex@latest
-cd /putanja/do/a-sta-sad
-codex
-```
 
 Prijavi se ponuđenom metodom. Za JetBrains integraciju: `Settings/Plugins` → instaliraj/aktiviraj `AI Assistant` (ako postoji podrška u tvojoj verziji), otvori **AI Chat** i izaberi **Codex**. Dostupnost zavisi od konkretne verzije Android Studio-a i plugin kompatibilnosti; CLI radi nezavisno od te integracije.
 

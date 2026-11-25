@@ -11,4 +11,21 @@
     <string name="forum_placeholder">Ovde ćeš moći da čitaš pitanja o školama i studiranju.</string>
     <string name="profile_title">Moj profil</string>
     <string name="profile_placeholder">Ovde ćeš moći da vidiš i urediš podatke svog naloga.</string>
+    <string name="admin_dashboard_title">Administracija</string>
+    <string name="admin_dashboard_description">Pregled administrativnih alata.</string>
+    <string name="admin_dashboard_section">Korisnici</string>
+    <string name="admin_dashboard_placeholder">Ovde ćeš moći da pregledaš i uređuješ korisničke naloge.</string>
+    <string name="professor_dashboard_title">Panel za profesore</string>
+    <string name="professor_dashboard_description">Pregled promotivnih aktivnosti tvoje škole.</string>
+    <string name="professor_dashboard_section">Termini i učesnici</string>
+    <string name="professor_dashboard_placeholder">Ovde ćeš moći da pregledaš termine i učesnike aktivnosti.</string>
+    <string name="student_dashboard_title">Panel za studente</string>
+    <string name="student_dashboard_description">Pregled tvog učešća u promotivnim aktivnostima.</string>
+    <string name="student_dashboard_section">Moje prijave</string>
+    <string name="student_dashboard_placeholder">Ovde ćeš moći da vidiš aktivnosti za koje si se prijavio.</string>
+    <string name="add_user_title">Dodavanje korisnika</string>
+    <string name="add_user_placeholder">Dodavanje korisnika još nije dostupno.</string>
+    <string name="add_user_name">Ime i prezime</string>
+    <string name="add_user_email">Imejl adresa</string>
+    <string name="add_user_submit">Dodaj korisnika</string>
 </resources>

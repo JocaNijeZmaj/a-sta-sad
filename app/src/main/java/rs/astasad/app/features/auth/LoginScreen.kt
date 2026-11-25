@@ -1,12 +1,10 @@
 package rs.astasad.app.features.auth
 
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import rs.astasad.app.R
+import rs.astasad.app.ui.components.AstaButton
 import rs.astasad.app.ui.components.AstaPlaceholderContent
 import rs.astasad.app.ui.theme.AstaTheme
 
@@ -16,9 +14,7 @@ fun LoginScreen(onContinueDemo: () -> Unit) {
         title = stringResource(R.string.app_name),
         description = stringResource(R.string.login_placeholder)
     ) {
-        Button(onClick = onContinueDemo, shape = MaterialTheme.shapes.medium) {
-            Text(stringResource(R.string.login_continue_demo))
-        }
+        AstaButton(label = stringResource(R.string.login_continue_demo), onClick = onContinueDemo)
     }
 }
 
