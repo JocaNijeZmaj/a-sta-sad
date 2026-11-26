@@ -1,6 +1,7 @@
 # Android Studio
 .idea/
 *.iml
+app/**/google-services.json
 
 # Gradle
 .gradle/
@@ -10,6 +11,8 @@ build/
 
 # Local configuration
 local.properties
+/firebase-debug.log*
+/firestore-debug.log*
 
 # macOS
 .DS_Store
