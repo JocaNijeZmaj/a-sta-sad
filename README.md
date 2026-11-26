@@ -111,6 +111,20 @@ npm exec --yes --package=firebase-tools -- firebase emulators:start --only auth,
 
 The Login → Activities demo works without `google-services.json`. With the file present, the debug app uses the local emulators by default. To target the shared dev cloud explicitly, build debug with `./gradlew :app:assembleDebug -PastaFirebaseDevCloud=true` and install that APK. This flag only changes debug SDK routing. The demo screens still use placeholder content.
 
+#### Authentication repository
+
+`FirebaseAuthRepository(context)` implements the shared auth contract in both build variants. It resolves the configured Firebase app on first use. With no Firebase client config, the existing demo still launches and repository calls report `CONFIGURATION_UNAVAILABLE`. Release has no emulator routing. Registration and profile provisioning are separate tasks.
+
+To run the opt-in auth integration test, start the Auth emulator, select an Android emulator, and use the debug client config and default emulator routing. On API 37 or later, install the debug app and grant local-network access as shown above before running:
+
+```bash
+./gradlew :app:connectedDebugAndroidTest \
+  -Pandroid.testInstrumentationRunnerArguments.fb06AuthEmulator=true \
+  -Pandroid.testInstrumentationRunnerArguments.class=rs.astasad.app.data.repository.firebase.FirebaseAuthEmulatorTest
+```
+
+The test creates and deletes a disposable user in the local Auth emulator and checks the generated reset code. The emulator does not send a real email.
+
 #### Offline demo data for UI development
 
 Select the **debug** build variant and open `app/src/debug/java/rs/astasad/app/ui/preview/DemoContentPreviews.kt` in Android Studio. The **Demo activities** and **Demo forum** previews show labeled, fictional content without the Firebase config or emulators.
